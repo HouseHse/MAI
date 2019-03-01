@@ -7,14 +7,14 @@
 
 cudaError_t powWithCuda(unsigned int *c, const int *a, unsigned int size);
 
-// Точка входа в GPU
+// РўРѕС‡РєР° РІС…РѕРґР° РІ GPU
 __global__ void powKernel(unsigned int *c, const int *a)
 {
 	int i = blockIdx.x * blockDim.x + threadIdx.x;
 	c[i] = a[i] * a[i];
 }
 
-// Точка входа в приложение
+// РўРѕС‡РєР° РІС…РѕРґР° РІ РїСЂРёР»РѕР¶РµРЅРёРµ
 int main()
 {
 	setlocale(LC_CTYPE, "rus");
@@ -38,9 +38,9 @@ int main()
 	}
 	clock_t device_time = clock();
 
-	printf("Задача задать массив чисел и вычислить их квадраты \n\n");
+	printf("Р—Р°РґР°С‡Р° Р·Р°РґР°С‚СЊ РјР°СЃСЃРёРІ С‡РёСЃРµР» Рё РІС‹С‡РёСЃР»РёС‚СЊ РёС… РєРІР°РґСЂР°С‚С‹ \n\n");
 
-	printf("Вывод первых 10 и последних 5 результатов возведения массива чисел в квадрат состоящего из %d элементов: \n\n", arraySize);
+	printf("Р’С‹РІРѕРґ РїРµСЂРІС‹С… 10 Рё РїРѕСЃР»РµРґРЅРёС… 5 СЂРµР·СѓР»СЊС‚Р°С‚РѕРІ РІРѕР·РІРµРґРµРЅРёСЏ РјР°СЃСЃРёРІР° С‡РёСЃРµР» РІ РєРІР°РґСЂР°С‚ СЃРѕСЃС‚РѕСЏС‰РµРіРѕ РёР· %d СЌР»РµРјРµРЅС‚РѕРІ: \n\n", arraySize);
 	printf("{1,2,3,4,5,6,7,8,9,10} = \n{%d,%d,%d,%d,%d,%d,%d,%d,%d,%d}\n\n",
 		c[0], c[1], c[2], c[3], c[4], c[5], c[6], c[7], c[8], c[9]);
 	printf("{%d,%d,%d,%d,%d} = \n{%d,%d,%d,%d,%d}\n",
@@ -49,7 +49,7 @@ int main()
 
 	printf("\n*******************************************\n\n");
 
-	//Расчёт на хосте
+	//Р Р°СЃС‡С‘С‚ РЅР° С…РѕСЃС‚Рµ
 	srand(time(0));
 
 	for (int i = 0; i < arraySize; i++)
@@ -58,43 +58,43 @@ int main()
 	}
 	clock_t host_time = clock();
 
-	printf("Время работы на устройстве составило: %d мкс \n", device_time * 1000);
-	printf("Время работы на хосте составило: %d мкс \n", host_time * 1000);
-	printf("Выигрыш времени на устройстве составил: %d мкс \n", (host_time - device_time) * 1000);
+	printf("Р’СЂРµРјСЏ СЂР°Р±РѕС‚С‹ РЅР° СѓСЃС‚СЂРѕР№СЃС‚РІРµ СЃРѕСЃС‚Р°РІРёР»Рѕ: %d РјРєСЃ \n", device_time * 1000);
+	printf("Р’СЂРµРјСЏ СЂР°Р±РѕС‚С‹ РЅР° С…РѕСЃС‚Рµ СЃРѕСЃС‚Р°РІРёР»Рѕ: %d РјРєСЃ \n", host_time * 1000);
+	printf("Р’С‹РёРіСЂС‹С€ РІСЂРµРјРµРЅРё РЅР° СѓСЃС‚СЂРѕР№СЃС‚РІРµ СЃРѕСЃС‚Р°РІРёР»: %d РјРєСЃ \n", (host_time - device_time) * 1000);
 
 	printf("\n*******************************************\n\n");
 
-	printf("Основные данные по устройству: \n\n");
+	printf("РћСЃРЅРѕРІРЅС‹Рµ РґР°РЅРЅС‹Рµ РїРѕ СѓСЃС‚СЂРѕР№СЃС‚РІСѓ: \n\n");
 
 	int deviceCount;
 	cudaGetDeviceCount(&deviceCount);
 	for (int device = 0; device < deviceCount; device++) {
 		cudaDeviceProp deviceProp;
 		cudaGetDeviceProperties(&deviceProp, device);
-		printf("Номер устройства: %d\n", device);
-		printf("Имя устройства: %s\n", deviceProp.name);
-		printf("Объем глобальной памяти: %d\n", deviceProp.totalGlobalMem);
-		printf("Объем shared-памяти в блоке : %d\n", deviceProp.sharedMemPerBlock);
-		printf("Объем регистровой памяти: %d\n", deviceProp.regsPerBlock);
-		printf("Размер warp'a: %d\n", deviceProp.warpSize);
-		printf("Размер шага памяти: %d\n", deviceProp.memPitch);
-		printf("Макс количество потоков в блоке: %d\n", deviceProp.maxThreadsPerBlock);
+		printf("РќРѕРјРµСЂ СѓСЃС‚СЂРѕР№СЃС‚РІР°: %d\n", device);
+		printf("РРјСЏ СѓСЃС‚СЂРѕР№СЃС‚РІР°: %s\n", deviceProp.name);
+		printf("РћР±СЉРµРј РіР»РѕР±Р°Р»СЊРЅРѕР№ РїР°РјСЏС‚Рё: %d\n", deviceProp.totalGlobalMem);
+		printf("РћР±СЉРµРј shared-РїР°РјСЏС‚Рё РІ Р±Р»РѕРєРµ : %d\n", deviceProp.sharedMemPerBlock);
+		printf("РћР±СЉРµРј СЂРµРіРёСЃС‚СЂРѕРІРѕР№ РїР°РјСЏС‚Рё: %d\n", deviceProp.regsPerBlock);
+		printf("Р Р°Р·РјРµСЂ warp'a: %d\n", deviceProp.warpSize);
+		printf("Р Р°Р·РјРµСЂ С€Р°РіР° РїР°РјСЏС‚Рё: %d\n", deviceProp.memPitch);
+		printf("РњР°РєСЃ РєРѕР»РёС‡РµСЃС‚РІРѕ РїРѕС‚РѕРєРѕРІ РІ Р±Р»РѕРєРµ: %d\n", deviceProp.maxThreadsPerBlock);
 
-		printf("Максимальная размерность потока: x = %d, y = %d, z = %d\n",
+		printf("РњР°РєСЃРёРјР°Р»СЊРЅР°СЏ СЂР°Р·РјРµСЂРЅРѕСЃС‚СЊ РїРѕС‚РѕРєР°: x = %d, y = %d, z = %d\n",
 			deviceProp.maxThreadsDim[0],
 			deviceProp.maxThreadsDim[1],
 			deviceProp.maxThreadsDim[2]);
 
-		printf("Максимальный размер сетки: x = %d, y = %d, z = %d\n",
+		printf("РњР°РєСЃРёРјР°Р»СЊРЅС‹Р№ СЂР°Р·РјРµСЂ СЃРµС‚РєРё: x = %d, y = %d, z = %d\n",
 			deviceProp.maxGridSize[0],
 			deviceProp.maxGridSize[1],
 			deviceProp.maxGridSize[2]);
 
-		printf("Тактовая частота: %d\n", deviceProp.clockRate);
-		printf("Общий объем константной памяти: %d\n", deviceProp.totalConstMem);
-		printf("Вычислительная мощность: %d.%d\n", deviceProp.major, deviceProp.minor);
-		printf("Величина текстурного выравнивания : %d\n", deviceProp.textureAlignment);
-		printf("Количество процессоров: %d\n\n", deviceProp.multiProcessorCount);
+		printf("РўР°РєС‚РѕРІР°СЏ С‡Р°СЃС‚РѕС‚Р°: %d\n", deviceProp.clockRate);
+		printf("РћР±С‰РёР№ РѕР±СЉРµРј РєРѕРЅСЃС‚Р°РЅС‚РЅРѕР№ РїР°РјСЏС‚Рё: %d\n", deviceProp.totalConstMem);
+		printf("Р’С‹С‡РёСЃР»РёС‚РµР»СЊРЅР°СЏ РјРѕС‰РЅРѕСЃС‚СЊ: %d.%d\n", deviceProp.major, deviceProp.minor);
+		printf("Р’РµР»РёС‡РёРЅР° С‚РµРєСЃС‚СѓСЂРЅРѕРіРѕ РІС‹СЂР°РІРЅРёРІР°РЅРёСЏ : %d\n", deviceProp.textureAlignment);
+		printf("РљРѕР»РёС‡РµСЃС‚РІРѕ РїСЂРѕС†РµСЃСЃРѕСЂРѕРІ: %d\n\n", deviceProp.multiProcessorCount);
 	}
 	printf("\n*******************************************\n\n");
 
@@ -113,32 +113,32 @@ int main()
 // Helper function for using CUDA to add vectors in parallel.
 cudaError_t powWithCuda(unsigned int *c, const int *a, unsigned int size)
 {
-	int *dev_a = 0; // dev - находится на GPU
+	int *dev_a = 0; // dev - РЅР°С…РѕРґРёС‚СЃСЏ РЅР° GPU
 	unsigned int *dev_c = 0;
 	cudaError_t cudaStatus;
 
 	// Choose which GPU to run on, change this on a multi-GPU system.
-	cudaStatus = cudaSetDevice(0); // указываем, что работаем на "0"-й карте, м.б. несколько
+	cudaStatus = cudaSetDevice(0); // СѓРєР°Р·С‹РІР°РµРј, С‡С‚Рѕ СЂР°Р±РѕС‚Р°РµРј РЅР° "0"-Р№ РєР°СЂС‚Рµ, Рј.Р±. РЅРµСЃРєРѕР»СЊРєРѕ
 	if (cudaStatus != cudaSuccess) {
 		fprintf(stderr, "cudaSetDevice failed!  Do you have a CUDA-capable GPU installed?");
 		goto Error;
 	}
 
 	// Allocate GPU buffers for three vectors (two input, one output)    .
-	cudaStatus = cudaMalloc((void**)&dev_c, size * sizeof(unsigned int)); // выделяем память на переменную
+	cudaStatus = cudaMalloc((void**)&dev_c, size * sizeof(unsigned int)); // РІС‹РґРµР»СЏРµРј РїР°РјСЏС‚СЊ РЅР° РїРµСЂРµРјРµРЅРЅСѓСЋ
 	if (cudaStatus != cudaSuccess) {
 		fprintf(stderr, "cudaMalloc failed!");
 		goto Error;
 	}
 
-	cudaStatus = cudaMalloc((void**)&dev_a, size * sizeof(int)); // выделяем память на переменную
+	cudaStatus = cudaMalloc((void**)&dev_a, size * sizeof(int)); // РІС‹РґРµР»СЏРµРј РїР°РјСЏС‚СЊ РЅР° РїРµСЂРµРјРµРЅРЅСѓСЋ
 	if (cudaStatus != cudaSuccess) {
 		fprintf(stderr, "cudaMalloc failed!");
 		goto Error;
 	}
 
 	// Copy input vectors from host memory to GPU buffers.
-	cudaStatus = cudaMemcpy(dev_a, a, size * sizeof(int), cudaMemcpyHostToDevice); // копируем значения переменной с хоста на GPU 
+	cudaStatus = cudaMemcpy(dev_a, a, size * sizeof(int), cudaMemcpyHostToDevice); // РєРѕРїРёСЂСѓРµРј Р·РЅР°С‡РµРЅРёСЏ РїРµСЂРµРјРµРЅРЅРѕР№ СЃ С…РѕСЃС‚Р° РЅР° GPU 
 	if (cudaStatus != cudaSuccess) {
 		fprintf(stderr, "cudaMemcpy failed!");
 		goto Error;
@@ -148,7 +148,7 @@ cudaError_t powWithCuda(unsigned int *c, const int *a, unsigned int size)
 	// Launch a kernel on the GPU with one thread for each element.
 	dim3 block(512, 1);
 	dim3 grid((size / 512 + 1), 1);
-	powKernel << <grid, block >> > (dev_c, dev_a); // запуск функции с параметрами (size - размер массива)
+	powKernel << <grid, block >> > (dev_c, dev_a); // Р·Р°РїСѓСЃРє С„СѓРЅРєС†РёРё СЃ РїР°СЂР°РјРµС‚СЂР°РјРё (size - СЂР°Р·РјРµСЂ РјР°СЃСЃРёРІР°)
 
 
 														  // Check for any errors launching the kernel
