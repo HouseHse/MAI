@@ -1,0 +1,31 @@
+﻿  Compiling CUDA source file kernel.cu...
+  
+  C:\Users\H.se\source\repos\lab1\lab1>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.1\bin\nvcc.exe" -gencode=arch=compute_35,code=\"sm_35,compute_35\" --use-local-env -ccbin "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.11.25503\bin\HostX86\x64" -x cu  -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.1\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.1\include"  -G   --keep-dir x64\Debug -maxrregcount=0  --machine 64 --compile -cudart static  -g   -DWIN32 -DWIN64 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /Fdx64\Debug\vc141.pdb /FS /Zi /RTC1 /MDd " -o x64\Debug\kernel.cu.obj "C:\Users\H.se\source\repos\lab1\lab1\kernel.cu" 
+C:/Users/H.se/source/repos/lab1/lab1/kernel.cu(125): warning : transfer of control bypasses initialization of:
+C:/Users/H.se/source/repos/lab1/lab1/kernel.cu(132): warning : transfer of control bypasses initialization of:
+C:/Users/H.se/source/repos/lab1/lab1/kernel.cu(138): warning : transfer of control bypasses initialization of:
+C:/Users/H.se/source/repos/lab1/lab1/kernel.cu(145): warning : transfer of control bypasses initialization of:
+C:/Users/H.se/source/repos/lab1/lab1/kernel.cu(125): warning : transfer of control bypasses initialization of:
+C:/Users/H.se/source/repos/lab1/lab1/kernel.cu(132): warning : transfer of control bypasses initialization of:
+C:/Users/H.se/source/repos/lab1/lab1/kernel.cu(138): warning : transfer of control bypasses initialization of:
+C:/Users/H.se/source/repos/lab1/lab1/kernel.cu(145): warning : transfer of control bypasses initialization of:
+  kernel.cu
+C:/Users/H.se/source/repos/lab1/lab1/kernel.cu(32): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+C:/Users/H.se/source/repos/lab1/lab1/kernel.cu(54): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+C:/Users/H.se/source/repos/lab1/lab1/kernel.cu(77): warning C4477: "printf": в строке форматирования "%d" требуется аргумент типа "int", но вариативный аргумент "1" имеет тип "::size_t"
+  C:/Users/H.se/source/repos/lab1/lab1/kernel.cu(77): note: рекомендуется использовать "%zd" в строке форматирования
+C:/Users/H.se/source/repos/lab1/lab1/kernel.cu(78): warning C4477: "printf": в строке форматирования "%d" требуется аргумент типа "int", но вариативный аргумент "1" имеет тип "::size_t"
+  C:/Users/H.se/source/repos/lab1/lab1/kernel.cu(78): note: рекомендуется использовать "%zd" в строке форматирования
+C:/Users/H.se/source/repos/lab1/lab1/kernel.cu(81): warning C4477: "printf": в строке форматирования "%d" требуется аргумент типа "int", но вариативный аргумент "1" имеет тип "::size_t"
+  C:/Users/H.se/source/repos/lab1/lab1/kernel.cu(81): note: рекомендуется использовать "%zd" в строке форматирования
+C:/Users/H.se/source/repos/lab1/lab1/kernel.cu(95): warning C4477: "printf": в строке форматирования "%d" требуется аргумент типа "int", но вариативный аргумент "1" имеет тип "::size_t"
+  C:/Users/H.se/source/repos/lab1/lab1/kernel.cu(95): note: рекомендуется использовать "%zd" в строке форматирования
+C:/Users/H.se/source/repos/lab1/lab1/kernel.cu(97): warning C4477: "printf": в строке форматирования "%d" требуется аргумент типа "int", но вариативный аргумент "1" имеет тип "::size_t"
+  C:/Users/H.se/source/repos/lab1/lab1/kernel.cu(97): note: рекомендуется использовать "%zd" в строке форматирования
+C:/Users/H.se/source/repos/lab1/lab1/kernel.cu(177): warning C4533: пропуск инициализации "grid" из-за перехода "goto Error"
+  C:/Users/H.se/source/repos/lab1/lab1/kernel.cu(151): note:  см. объявление "grid"
+  C:/Users/H.se/source/repos/lab1/lab1/kernel.cu(177): note:  см. объявление "Error"
+C:/Users/H.se/source/repos/lab1/lab1/kernel.cu(177): warning C4533: пропуск инициализации "block" из-за перехода "goto Error"
+  C:/Users/H.se/source/repos/lab1/lab1/kernel.cu(150): note:  см. объявление "block"
+  C:/Users/H.se/source/repos/lab1/lab1/kernel.cu(177): note:  см. объявление "Error"
+  lab1.vcxproj -> C:\Users\H.se\source\repos\lab1\x64\Debug\lab1.exe
