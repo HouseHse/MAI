@@ -1,0 +1,16 @@
+﻿  Compiling CUDA source file kernel.cu...
+  
+  c:\Users\H.se\documents\visual studio 2015\Projects\Laba2\Laba2>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.1\bin\nvcc.exe" -gencode=arch=compute_35,code=\"sm_35,compute_35\" --use-local-env -ccbin "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64" -x cu  -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.1\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.1\include"  -G   --keep-dir x64\Debug -maxrregcount=0  --machine 64 --compile -cudart static  -g   -DWIN32 -DWIN64 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /Fdx64\Debug\vc140.pdb /FS /Zi /RTC1 /MDd " -o x64\Debug\kernel.cu.obj "c:\Users\H.se\documents\visual studio 2015\Projects\Laba2\Laba2\kernel.cu" 
+c:/Users/H.se/documents/visual studio 2015/Projects/Laba2/Laba2/kernel.cu(24): warning : variable "x" was declared but never referenced
+c:/Users/H.se/documents/visual studio 2015/Projects/Laba2/Laba2/kernel.cu(25): warning : variable "y" was declared but never referenced
+c:/Users/H.se/documents/visual studio 2015/Projects/Laba2/Laba2/kernel.cu(66): warning : conversion from a string literal to "char *" is deprecated
+c:/Users/H.se/documents/visual studio 2015/Projects/Laba2/Laba2/kernel.cu(97): warning : conversion from a string literal to "char *" is deprecated
+c:/Users/H.se/documents/visual studio 2015/Projects/Laba2/Laba2/kernel.cu(108): warning : conversion from a string literal to "char *" is deprecated
+c:/Users/H.se/documents/visual studio 2015/Projects/Laba2/Laba2/kernel.cu(66): warning : conversion from a string literal to "char *" is deprecated
+c:/Users/H.se/documents/visual studio 2015/Projects/Laba2/Laba2/kernel.cu(97): warning : conversion from a string literal to "char *" is deprecated
+c:/Users/H.se/documents/visual studio 2015/Projects/Laba2/Laba2/kernel.cu(108): warning : conversion from a string literal to "char *" is deprecated
+  kernel.cu
+c:/Users/H.se/documents/visual studio 2015/Projects/Laba2/Laba2/kernel.cu(84): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:/Users/H.se/documents/visual studio 2015/Projects/Laba2/Laba2/kernel.cu(104): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Laba2.vcxproj -> c:\Users\H.se\documents\visual studio 2015\Projects\Laba2\x64\Debug\Laba2.exe
+  Laba2.vcxproj -> c:\Users\H.se\documents\visual studio 2015\Projects\Laba2\x64\Debug\Laba2.pdb (Full PDB)
