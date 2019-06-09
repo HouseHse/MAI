@@ -23,12 +23,12 @@ printf("Error in file: %s, line: %i\n", __FILE__, __LINE__);  \
 
 #endif
 
-// Функция транспонирования матрицы без использования разделяемой памяти
+// Р¤СѓРЅРєС†РёСЏ С‚СЂР°РЅСЃРїРѕРЅРёСЂРѕРІР°РЅРёСЏ РјР°С‚СЂРёС†С‹ Р±РµР· РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ СЂР°Р·РґРµР»СЏРµРјРѕР№ РїР°РјСЏС‚Рё
 // 
-// inputMatrix - указатель на исходную матрицу 
-// outputMatrix - указатель на матрицу результат
-// width - ширина исходной матрицы (она же высота матрицы-результата)
-// height - высота исходной матрицы (она же ширина матрицы-результата)
+// inputMatrix - СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РёСЃС…РѕРґРЅСѓСЋ РјР°С‚СЂРёС†Сѓ 
+// outputMatrix - СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РјР°С‚СЂРёС†Сѓ СЂРµР·СѓР»СЊС‚Р°С‚
+// width - С€РёСЂРёРЅР° РёСЃС…РѕРґРЅРѕР№ РјР°С‚СЂРёС†С‹ (РѕРЅР° Р¶Рµ РІС‹СЃРѕС‚Р° РјР°С‚СЂРёС†С‹-СЂРµР·СѓР»СЊС‚Р°С‚Р°)
+// height - РІС‹СЃРѕС‚Р° РёСЃС…РѕРґРЅРѕР№ РјР°С‚СЂРёС†С‹ (РѕРЅР° Р¶Рµ С€РёСЂРёРЅР° РјР°С‚СЂРёС†С‹-СЂРµР·СѓР»СЊС‚Р°С‚Р°)
 //
 __global__ void transposeMatrixSlow(float* inputMatrix, float* outputMatrix, int width, int height)
 {
@@ -37,10 +37,10 @@ __global__ void transposeMatrixSlow(float* inputMatrix, float* outputMatrix, int
 
 	if ((xIndex < width) && (yIndex < height))
 	{
-		//Линейный индекс элемента строки исходной матрицы  
+		//Р›РёРЅРµР№РЅС‹Р№ РёРЅРґРµРєСЃ СЌР»РµРјРµРЅС‚Р° СЃС‚СЂРѕРєРё РёСЃС…РѕРґРЅРѕР№ РјР°С‚СЂРёС†С‹  
 		int inputIdx = xIndex + width * yIndex;
 
-		//Линейный индекс элемента столбца матрицы-результата
+		//Р›РёРЅРµР№РЅС‹Р№ РёРЅРґРµРєСЃ СЌР»РµРјРµРЅС‚Р° СЃС‚РѕР»Р±С†Р° РјР°С‚СЂРёС†С‹-СЂРµР·СѓР»СЊС‚Р°С‚Р°
 		int outputIdx = yIndex + height * xIndex;
 
 		outputMatrix[outputIdx] = inputMatrix[inputIdx];
@@ -49,12 +49,12 @@ __global__ void transposeMatrixSlow(float* inputMatrix, float* outputMatrix, int
 
 #define BLOCK_DIM 16
 
-// Функция транспонирования матрицы c использования разделяемой памяти
+// Р¤СѓРЅРєС†РёСЏ С‚СЂР°РЅСЃРїРѕРЅРёСЂРѕРІР°РЅРёСЏ РјР°С‚СЂРёС†С‹ c РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ СЂР°Р·РґРµР»СЏРµРјРѕР№ РїР°РјСЏС‚Рё
 // 
-// inputMatrix - указатель на исходную матрицу 
-// outputMatrix - указатель на матрицу результат
-// width - ширина исходной матрицы (она же высота матрицы-результата)
-// height - высота исходной матрицы (она же ширина матрицы-результата)
+// inputMatrix - СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РёСЃС…РѕРґРЅСѓСЋ РјР°С‚СЂРёС†Сѓ 
+// outputMatrix - СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РјР°С‚СЂРёС†Сѓ СЂРµР·СѓР»СЊС‚Р°С‚
+// width - С€РёСЂРёРЅР° РёСЃС…РѕРґРЅРѕР№ РјР°С‚СЂРёС†С‹ (РѕРЅР° Р¶Рµ РІС‹СЃРѕС‚Р° РјР°С‚СЂРёС†С‹-СЂРµР·СѓР»СЊС‚Р°С‚Р°)
+// height - РІС‹СЃРѕС‚Р° РёСЃС…РѕРґРЅРѕР№ РјР°С‚СЂРёС†С‹ (РѕРЅР° Р¶Рµ С€РёСЂРёРЅР° РјР°С‚СЂРёС†С‹-СЂРµР·СѓР»СЊС‚Р°С‚Р°)
 //
 __global__ void transposeMatrixFast(float* inputMatrix, float* outputMatrix, int width, int height)
 {
@@ -65,14 +65,14 @@ __global__ void transposeMatrixFast(float* inputMatrix, float* outputMatrix, int
 
 	if ((xIndex < width) && (yIndex < height))
 	{
-		// Линейный индекс элемента строки исходной матрицы  
+		// Р›РёРЅРµР№РЅС‹Р№ РёРЅРґРµРєСЃ СЌР»РµРјРµРЅС‚Р° СЃС‚СЂРѕРєРё РёСЃС…РѕРґРЅРѕР№ РјР°С‚СЂРёС†С‹  
 		int idx = yIndex * width + xIndex;
 
-		//Копируем элементы исходной матрицы
+		//РљРѕРїРёСЂСѓРµРј СЌР»РµРјРµРЅС‚С‹ РёСЃС…РѕРґРЅРѕР№ РјР°С‚СЂРёС†С‹
 		temp[threadIdx.y][threadIdx.x] = inputMatrix[idx];
 	}
 
-	//Синхронизируем все нити в блоке
+	//РЎРёРЅС…СЂРѕРЅРёР·РёСЂСѓРµРј РІСЃРµ РЅРёС‚Рё РІ Р±Р»РѕРєРµ
 	__syncthreads();
 
 	xIndex = blockIdx.y * blockDim.y + threadIdx.x;
@@ -80,15 +80,15 @@ __global__ void transposeMatrixFast(float* inputMatrix, float* outputMatrix, int
 
 	if ((xIndex < height) && (yIndex < width))
 	{
-		// Линейный индекс элемента строки исходной матрицы  
+		// Р›РёРЅРµР№РЅС‹Р№ РёРЅРґРµРєСЃ СЌР»РµРјРµРЅС‚Р° СЃС‚СЂРѕРєРё РёСЃС…РѕРґРЅРѕР№ РјР°С‚СЂРёС†С‹  
 		int idx = yIndex * height + xIndex;
 
-		//Копируем элементы исходной матрицы
+		//РљРѕРїРёСЂСѓРµРј СЌР»РµРјРµРЅС‚С‹ РёСЃС…РѕРґРЅРѕР№ РјР°С‚СЂРёС†С‹
 		outputMatrix[idx] = temp[threadIdx.x][threadIdx.y];
 	}
 }
 
-// Функция транспонирования матрицы, выполняемая на CPU
+// Р¤СѓРЅРєС†РёСЏ С‚СЂР°РЅСЃРїРѕРЅРёСЂРѕРІР°РЅРёСЏ РјР°С‚СЂРёС†С‹, РІС‹РїРѕР»РЅСЏРµРјР°СЏ РЅР° CPU
 __host__ void transposeMatrixCPU(float* inputMatrix, float* outputMatrix, int width, int height)
 {
 	for (int y = 0; y < height; y++)
@@ -119,71 +119,71 @@ __host__ void printMatrixToFile(char* fileName, float* matrix, int width, int he
 #define GPU_FAST 2
 #define CPU 3
 
-#define ITERATIONS 20    //Количество нагрузочных циклов
+#define ITERATIONS 20    //РљРѕР»РёС‡РµСЃС‚РІРѕ РЅР°РіСЂСѓР·РѕС‡РЅС‹С… С†РёРєР»РѕРІ
 
 __host__ int main()
 {
-	int width = 2048;    //Ширина матрицы
-	int height = 1056;    //Высота матрицы
+	int width = 2048;    //РЁРёСЂРёРЅР° РјР°С‚СЂРёС†С‹
+	int height = 1056;    //Р’С‹СЃРѕС‚Р° РјР°С‚СЂРёС†С‹
 
 	int matrixSize = width * height;
 	int byteSize = matrixSize * sizeof(float);
 
-	//Выделяем память под матрицы на хосте
+	//Р’С‹РґРµР»СЏРµРј РїР°РјСЏС‚СЊ РїРѕРґ РјР°С‚СЂРёС†С‹ РЅР° С…РѕСЃС‚Рµ
 	float* inputMatrix = new float[matrixSize];
 	float* outputMatrix = new float[matrixSize];
 
-	//Заполняем исходную матрицу данными
+	//Р—Р°РїРѕР»РЅСЏРµРј РёСЃС…РѕРґРЅСѓСЋ РјР°С‚СЂРёС†Сѓ РґР°РЅРЅС‹РјРё
 	for (int i = 0; i < matrixSize; i++)
 	{
 		inputMatrix[i] = i;
 	}
 
-	//Выбираем способ расчета транспонированной матрицы
+	//Р’С‹Р±РёСЂР°РµРј СЃРїРѕСЃРѕР± СЂР°СЃС‡РµС‚Р° С‚СЂР°РЅСЃРїРѕРЅРёСЂРѕРІР°РЅРЅРѕР№ РјР°С‚СЂРёС†С‹
 	printf("Select compute mode: 1 - Slow GPU, 2 - Fast GPU, 3 - CPU\n");
 	int mode;
 	scanf("%i", &mode);
 
-	//Записываем исходную матрицу в файл
+	//Р—Р°РїРёСЃС‹РІР°РµРј РёСЃС…РѕРґРЅСѓСЋ РјР°С‚СЂРёС†Сѓ РІ С„Р°Р№Р»
 	printMatrixToFile("before.txt", inputMatrix, width, height);
 
-	if (mode == CPU)    //Если используеться только CPU
+	if (mode == CPU)    //Р•СЃР»Рё РёСЃРїРѕР»СЊР·СѓРµС‚СЊСЃСЏ С‚РѕР»СЊРєРѕ CPU
 	{
 		int start = GetTickCount();
 		for (int i = 0; i < ITERATIONS; i++)
 		{
 			transposeMatrixCPU(inputMatrix, outputMatrix, width, height);
 		}
-		//Выводим время выполнения функции на CPU (в миллиекундах)
+		//Р’С‹РІРѕРґРёРј РІСЂРµРјСЏ РІС‹РїРѕР»РЅРµРЅРёСЏ С„СѓРЅРєС†РёРё РЅР° CPU (РІ РјРёР»Р»РёРµРєСѓРЅРґР°С…)
 		printf("CPU compute time: %i\n", GetTickCount() - start);
 	}
-	else  //В случае расчета на GPU
+	else  //Р’ СЃР»СѓС‡Р°Рµ СЂР°СЃС‡РµС‚Р° РЅР° GPU
 	{
 		float* devInputMatrix;
 		float* devOutputMatrix;
 
-		//Выделяем глобальную память для храния данных на девайсе
+		//Р’С‹РґРµР»СЏРµРј РіР»РѕР±Р°Р»СЊРЅСѓСЋ РїР°РјСЏС‚СЊ РґР»СЏ С…СЂР°РЅРёСЏ РґР°РЅРЅС‹С… РЅР° РґРµРІР°Р№СЃРµ
 		CUDA_CHECK_ERROR(cudaMalloc((void**)&devInputMatrix, byteSize));
 		CUDA_CHECK_ERROR(cudaMalloc((void**)&devOutputMatrix, byteSize));
 
-		//Копируем исходную матрицу с хоста на девайс
+		//РљРѕРїРёСЂСѓРµРј РёСЃС…РѕРґРЅСѓСЋ РјР°С‚СЂРёС†Сѓ СЃ С…РѕСЃС‚Р° РЅР° РґРµРІР°Р№СЃ
 		CUDA_CHECK_ERROR(cudaMemcpy(devInputMatrix, inputMatrix, byteSize, cudaMemcpyHostToDevice));
 
-		//Конфигурация запуска ядра
+		//РљРѕРЅС„РёРіСѓСЂР°С†РёСЏ Р·Р°РїСѓСЃРєР° СЏРґСЂР°
 		dim3 gridSize = dim3(width / BLOCK_DIM, height / BLOCK_DIM, 1);
 		dim3 blockSize = dim3(BLOCK_DIM, BLOCK_DIM, 1);
 
 		cudaEvent_t start;
 		cudaEvent_t stop;
 
-		//Создаем event'ы для синхронизации и замера времени работы GPU
+		//РЎРѕР·РґР°РµРј event'С‹ РґР»СЏ СЃРёРЅС…СЂРѕРЅРёР·Р°С†РёРё Рё Р·Р°РјРµСЂР° РІСЂРµРјРµРЅРё СЂР°Р±РѕС‚С‹ GPU
 		CUDA_CHECK_ERROR(cudaEventCreate(&start));
 		CUDA_CHECK_ERROR(cudaEventCreate(&stop));
 
-		//Отмечаем старт расчетов на GPU
+		//РћС‚РјРµС‡Р°РµРј СЃС‚Р°СЂС‚ СЂР°СЃС‡РµС‚РѕРІ РЅР° GPU
 		cudaEventRecord(start, 0);
 
-		if (mode == GPU_SLOW)    //Используеться функция без разделяемой памяти
+		if (mode == GPU_SLOW)    //РСЃРїРѕР»СЊР·СѓРµС‚СЊСЃСЏ С„СѓРЅРєС†РёСЏ Р±РµР· СЂР°Р·РґРµР»СЏРµРјРѕР№ РїР°РјСЏС‚Рё
 		{
 			for (int i = 0; i < ITERATIONS; i++)
 			{
@@ -191,7 +191,7 @@ __host__ int main()
 				transposeMatrixSlow << <gridSize, blockSize >> >(devInputMatrix, devOutputMatrix, width, height);
 			}
 		}
-		else if (mode == GPU_FAST)  //Используеться функция с разделяемой памятью
+		else if (mode == GPU_FAST)  //РСЃРїРѕР»СЊР·СѓРµС‚СЊСЃСЏ С„СѓРЅРєС†РёСЏ СЃ СЂР°Р·РґРµР»СЏРµРјРѕР№ РїР°РјСЏС‚СЊСЋ
 		{
 			for (int i = 0; i < ITERATIONS; i++)
 			{
@@ -200,23 +200,23 @@ __host__ int main()
 			}
 		}
 
-		//Отмечаем окончание расчета
+		//РћС‚РјРµС‡Р°РµРј РѕРєРѕРЅС‡Р°РЅРёРµ СЂР°СЃС‡РµС‚Р°
 		cudaEventRecord(stop, 0);
 
 		float time = 0;
-		//Синхронизируемя с моментом окончания расчетов
+		//РЎРёРЅС…СЂРѕРЅРёР·РёСЂСѓРµРјСЏ СЃ РјРѕРјРµРЅС‚РѕРј РѕРєРѕРЅС‡Р°РЅРёСЏ СЂР°СЃС‡РµС‚РѕРІ
 		cudaEventSynchronize(stop);
-		//Рассчитываем время работы GPU
+		//Р Р°СЃСЃС‡РёС‚С‹РІР°РµРј РІСЂРµРјСЏ СЂР°Р±РѕС‚С‹ GPU
 		cudaEventElapsedTime(&time, start, stop);
 
-		//Выводим время расчета в консоль
+		//Р’С‹РІРѕРґРёРј РІСЂРµРјСЏ СЂР°СЃС‡РµС‚Р° РІ РєРѕРЅСЃРѕР»СЊ
 		printf("GPU compute time: %.0f\n", time);
 
-		//Копируем результат с девайса на хост
+		//РљРѕРїРёСЂСѓРµРј СЂРµР·СѓР»СЊС‚Р°С‚ СЃ РґРµРІР°Р№СЃР° РЅР° С…РѕСЃС‚
 		CUDA_CHECK_ERROR(cudaMemcpy(outputMatrix, devOutputMatrix, byteSize, cudaMemcpyDeviceToHost));
 
 		//
-		//Чистим ресурсы на видеокарте
+		//Р§РёСЃС‚РёРј СЂРµСЃСѓСЂСЃС‹ РЅР° РІРёРґРµРѕРєР°СЂС‚Рµ
 		//
 
 		CUDA_CHECK_ERROR(cudaFree(devInputMatrix));
@@ -226,10 +226,10 @@ __host__ int main()
 		CUDA_CHECK_ERROR(cudaEventDestroy(stop));
 	}
 
-	//Записываем матрицу-результат в файл
+	//Р—Р°РїРёСЃС‹РІР°РµРј РјР°С‚СЂРёС†Сѓ-СЂРµР·СѓР»СЊС‚Р°С‚ РІ С„Р°Р№Р»
 	printMatrixToFile("after.txt", outputMatrix, height, width);
 
-	//Чистим память на хосте
+	//Р§РёСЃС‚РёРј РїР°РјСЏС‚СЊ РЅР° С…РѕСЃС‚Рµ
 	delete[] inputMatrix;
 	delete[] outputMatrix;
 
